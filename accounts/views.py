@@ -107,10 +107,15 @@ def logout_view(request):
 @login_required
 def user_profile(request):
     form = UserProfileForm()
+    profile = UserProfile.objects.filter(user=request.user).first()
+    if profile:
+        form = UserProfileForm(instance=profile)
     if request.method == 'POST':
-        user_form = UserProfileForm(request.POST, request.FILES, instance=request.user.userprofile)
+        user_form = UserProfileForm(request.POST, request.FILES)
         if user_form.is_valid():
-            user_form.save()
+            form = user_form.save(commit=False)
+            form.user = request.user
+            form.save()
             messages.success(request, 'Profile updated successfully')
             return redirect('user_profile')
     ctx = {
@@ -122,9 +127,11 @@ def user_profile(request):
 def hr_profile(request):
     form = HrProfileForm()
     if request.method == 'POST':
-        hr_form = HrProfileForm(request.POST, request.FILES, instance=request.user.hrprofile)
+        hr_form = HrProfileForm(request.POST, request.FILES)
         if hr_form.is_valid():
-            hr_form.save()
+            form = hr_form.save(commit=False)
+            form.user = request.user
+            form.save()
             messages.success(request, 'Profile updated successfully')
             return redirect('hr_profile')
     ctx = {

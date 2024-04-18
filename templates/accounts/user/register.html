@@ -39,10 +39,11 @@
                 <div class="col-md-4 ">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Create seller account</h3>
+                            <h3>Create User Account</h3>
                             <form method="post">
-                                {% csrf_token %}
-                                <input type="hidden" name="group" value="seller">
+                            {% include 'components/message.html' %}
+                            {% csrf_token %}
+                                <input type="hidden" name="group" value="user">
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Your Username</label>
                                     <input type="text" class="form-control" name="username" id="username"
@@ -66,7 +67,7 @@
                                 </div>
                                 <div class="mb-3 d-flex justify-content-between align-items-center">
                                     <button type="submit" class="btn btn-primary">Register</button>
-                                    <a href="{% url 'ulogin' %}" class="nav-link">Already a customer?</a>
+                                    <a href="{% url 'ulogin' %}" class="nav-link">Already a user?</a>
                                 </div>
 
 

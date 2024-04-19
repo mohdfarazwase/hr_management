@@ -23,7 +23,7 @@ def hr_login(request):
                     login(request, user)
                     request.session['group'] = group
                     messages.success(request, 'Welcome, ' + user.username)
-                    return redirect('home')
+                    return redirect('hr_dashboard')
                 else:
                     messages.error(request, 'You are not a hr')
                     return redirect('hlogin')
@@ -126,6 +126,9 @@ def user_profile(request):
 @login_required
 def hr_profile(request):
     form = HrProfileForm()
+    profile = HrProfile.objects.filter(user=request.user).first()
+    if profile:
+        form = HrProfileForm(instance=profile)
     if request.method == 'POST':
         hr_form = HrProfileForm(request.POST, request.FILES)
         if hr_form.is_valid():

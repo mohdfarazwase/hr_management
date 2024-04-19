@@ -6,15 +6,36 @@
 
 {% block css %}
 <style>
-    body{
+    body {
         background-color: #44a0fc;
+    }
+
+    .dashboard-container {
+        margin-top: 50px;
+    }
+
+    .user-info {
+        margin-bottom: 20px;
     }
 </style>
 {% endblock css %}
 
 
 {% block content %}
-
+<div class="container dashboard-container">
+    <h1>Welcome, <span id="username"></span>!</h1>
+    <div class="user-info">
+        <h2>Your Information:</h2>
+        <p>Email: <span id="email"></span></p>
+        <!-- Add more fields as needed -->
+    </div>
+    <a href="/logout" class="btn btn-primary">Logout</a>
+</div>
+<script>
+    // Replace these with actual values from your server
+    document.getElementById('username').textContent = 'User Name';
+    document.getElementById('email').textContent = 'user@example.com';
+</script>
 {% endblock content %}
 
 

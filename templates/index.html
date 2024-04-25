@@ -1,4 +1,3 @@
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -65,35 +64,41 @@
           <li><a href="{% url 'uploadcv' %}">Upload CV</a></li>
           <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
           <li><a href="team.html">Team</a></li>
-          
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i
-                class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i
-                    class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
+
+
           <li><a href="contact.html">Contact</a></li>
+
+          {% if not user.is_authenticated %}
           <li><a href="{% url 'hlogin' %}">HR</a></li>
-          <li class="dropdown"><a href="#"><span>Account</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+          <li class="dropdown"><a href="#"><span>Account</span> <i
+                class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
               <li><a href="{%url 'ulogin'%}">Login</a></li>
               <li><a href="{%url 'uregister'%}">Register</a></li>
-  
+
             </ul>
           </li>
+          {% else %}
+          <li class="dropdown">
+            <a href="#">
+              <span>
+                <i class="bi bi-person-circle"></i>
+              </span>
+              <i class="bi bi-chevron-down dropdown-indicator"></i>
+            </a>
+            <ul>
+              {% if user.groups.all.0.name == 'user' %}
+              <li> <a href="{% url 'user_dashboard' %}">Dashboard</a></li>
+              <li> <a href="{% url 'user_profile' %}">Profile</a></li>
+              {% elif user.groups.all.0.name == 'hr' %}
+              <li> <a href="{% url 'hr_dashboard' %}">Dashboard</a></li>
+              <li> <a href="{% url 'hr_profile_view' %}">Profile</a></li>
+              {% endif %}
+              <li> <a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+          </li>
+          {% endif %}
+
         </ul>
       </nav><!-- .navbar -->
 
@@ -112,7 +117,7 @@
           </blockquote>
           <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
             <a href="#about" class="btn-get-started">Get Started</a>
-            
+
           </div>
 
         </div>
@@ -213,16 +218,16 @@
           </div>
           End Service Item -->
 
-          <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
+        <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="200">
             <div class="icon flex-shrink-0"><i class="bi bi-card-checklist" style="color: #15a04a;"></i></div>
             <div>
               <h4 class="title"><a href="#" class="stretched-link">Dolor Sitema</a></h4>
               <p class="description">Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
                 commodo consequat tarad limino ata</p>
             </div> -->
-          </div><!-- End Service Item -->
+      </div><!-- End Service Item -->
 
-          <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
+      <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="300">
             <div class="icon flex-shrink-0"><i class="bi bi-bar-chart" style="color: #d90769;"></i></div>
             <div>
               <h4 class="title"><a href="#" class="stretched-link">Sed ut perspiciatis</a></h4>
@@ -231,15 +236,15 @@
             </div>
           </div> End Service Item -->
 
-          <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
+      <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="400">
             <div class="icon flex-shrink-0"><i class="bi bi-binoculars" style="color: #15bfbc;"></i></div>
             <div>
               <h4 class="title"><a href="#" class="stretched-link">Magni Dolores</a></h4>
               <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
                 mollit anim id est laborum</p>
             </div> --> -->
-          </div><!-- End Service Item -->
-<!-- 
+      </div><!-- End Service Item -->
+      <!-- 
           <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="500">
             <div class="icon flex-shrink-0"><i class="bi bi-brightness-high" style="color: #f5cf13;"></i></div>
             <div>
@@ -247,18 +252,18 @@
               <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis
                 praesentium voluptatum deleniti atque</p>
             </div> -->
-          </div><!-- End Service Item -->
+      </div><!-- End Service Item -->
 
-          <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
+      <!-- <div class="col-lg-4 col-md-6 service-item d-flex" data-aos="fade-up" data-aos-delay="600">
             <div class="icon flex-shrink-0"><i class="bi bi-calendar4-week" style="color: #1335f5;"></i></div>
             <div>
               <h4 class="title"><a href="#" class="stretched-link">Eiusmod Tempor</a></h4>
               <p class="description">Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum
                 soluta nobis est eligendi</p>
             </div> -->
-          </div><!-- End Service Item -->
+      </div><!-- End Service Item -->
 
-        </div>
+      </div>
 
       </div>
     </section><!-- End Our Services Section -->
@@ -280,7 +285,7 @@
 
     <!-- ======= Features Section ======= -->
     <section id="features" class="features">
-<!-- 
+      <!-- 
       <div class="container" data-aos="fade-up">
         <div class="row">
           <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
@@ -295,55 +300,55 @@
                 </div>
               </div><!-- End Icon List Item-->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-bar-chart-box-line" style="color: #5578ff;"></i>
                   <span>Sit amet consectetur adipisicing</span>
                 </div>
               </div> End Icon List Item-->
- 
-              <!-- <div class="col-md-6">
+
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-calendar-todo-line" style="color: #e80368;"></i>
                   <span>Ipsum Rerum Explicabo</span>
                 </div>
-              </div> End Icon List Item--> 
+              </div> End Icon List Item-->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-paint-brush-line" style="color: #e361ff;"></i>
                   <span>Easy Cart Features</span>
                 </div>
               </div>End Icon List Item -->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-database-2-line" style="color: #47aeff;"></i>
                   <span>Easy Cart Features</span>
                 </div> -->
-              </div><!-- End Icon List Item-->
+      </div><!-- End Icon List Item-->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-gradienter-line" style="color: #ffa76e;"></i>
                   <span>Sit amet consectetur adipisicing</span>
                 </div> -->
-              </div><!-- End Icon List Item-->
+      </div><!-- End Icon List Item-->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-file-list-3-line" style="color: #11dbcf;"></i>
                   <span>Ipsum Rerum Explicabo</span>
                 </div> -->
-              <!-- </div>End Icon List Item -->
+      <!-- </div>End Icon List Item -->
 
-              <!-- <div class="col-md-6">
+      <!-- <div class="col-md-6">
                 <div class="icon-list d-flex">
                   <i class="ri-base-station-line" style="color: #ff5828;"></i>
                   <span>Easy Cart Features</span>
                 </div> -->
-              </div><!-- End Icon List Item-->
-            <!-- </div>
+      </div><!-- End Icon List Item-->
+      <!-- </div>
           </div>
           <div class="col-lg-5 position-relative" data-aos="fade-up" data-aos-delay="200">
             <div class="phone-wrap">
@@ -365,7 +370,7 @@
             </div>
           </div> -->
 
-        </div>
+      </div>
       </div>
 
     </section><!-- End Features Section -->
@@ -374,7 +379,7 @@
     <!-- <section id="recent-posts" class="recent-posts">
       <div class="container" data-aos="fade-up"> -->
 
-        <!-- <div class="section-header">
+    <!-- <div class="section-header">
           <h2>Recent Blog Posts</h2>
 
         </div>
@@ -468,7 +473,7 @@
             </div>
           </div> -->
 
-          <!-- <div class="col-lg-2 col-6 footer-links">
+    <!-- <div class="col-lg-2 col-6 footer-links">
             <h4>Useful Links</h4>
             <ul>
               <li><i class="bi bi-dash"></i> <a href="#">Home</a></li>
@@ -479,7 +484,7 @@
             </ul>
           </div> -->
 
-          <!-- <div class="col-lg-2 col-6 footer-links">
+    <!-- <div class="col-lg-2 col-6 footer-links">
             <h4>Our Services</h4>
             <ul>
               <li><i class="bi bi-dash"></i> <a href="#">Web Design</a></li>
@@ -500,15 +505,15 @@
               <strong>Email:</strong> info@example.com<br>
             </p> -->
 
-          </div>
+    </div>
 
-        </div>
-      </div>
+    </div>
+    </div>
     </div>
 
     <div class="footer-legal">
       <div class="container">
-         
+
         <div class="credits">
           <!-- All the links in the footer should remain intact. -->
           <!-- You can delete the links only if you purchased the pro version. -->

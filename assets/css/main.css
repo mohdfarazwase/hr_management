@@ -236,6 +236,7 @@ section {
   transition: all 0.5s;
   z-index: 997;
   padding: 24px 0;
+  background-color: rgb(23, 75, 75);
 }
 
 @media (max-width: 1200px) {
@@ -245,7 +246,7 @@ section {
 }
 
 .header.sticked {
-  background: rgba(27, 47, 69, 0.9);
+  background: rgba(27, 47, 69, 0.9) !important;
   padding: 12px 0;
 }
 

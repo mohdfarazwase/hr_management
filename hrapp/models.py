@@ -1,6 +1,7 @@
 from datetime import timezone
 from django.db import models
 from django.contrib.auth.models import User
+
 # job
 class Job(models.Model):
     hr = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -29,17 +30,16 @@ class JobMatches(models.Model):
     
     def _str_(self):
         return self.job.title
-
 # resume
     
 class Resume(models.Model):
     file = models.FileField(upload_to='resumes/')  
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey( User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def str(self):
-        return self.full_name
-    
+        return self.full_name 
+   
 # contact
     
 class Contact(models.Model):

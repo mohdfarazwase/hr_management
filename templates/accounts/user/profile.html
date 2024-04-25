@@ -6,9 +6,7 @@
 
 {% block css %}
 <style>
-body{
-    background-color: #44a0fc;
-}
+
 </style>
 {% endblock css %}
 
@@ -19,7 +17,7 @@ body{
         <div class="col-md-6 mx-auto">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">User Edit/Update Profile</h5>
+                    <h5 class="card-title">Hr Edit/Update Profile</h5>
                     <form action="" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{form|crispy}}

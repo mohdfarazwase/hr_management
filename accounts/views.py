@@ -123,21 +123,4 @@ def user_profile(request):
     }
     return render(request, 'accounts/user/profile.html', ctx)
 
-@login_required
-def hr_profile(request):
-    form = HrProfileForm()
-    profile = HrProfile.objects.filter(user=request.user).first()
-    if profile:
-        form = HrProfileForm(instance=profile)
-    if request.method == 'POST':
-        hr_form = HrProfileForm(request.POST, request.FILES)
-        if hr_form.is_valid():
-            form = hr_form.save(commit=False)
-            form.user = request.user
-            form.save()
-            messages.success(request, 'Profile updated successfully')
-            return redirect('hr_profile')
-    ctx = {
-        'form': form
-    }
-    return render(request, 'accounts/hr/profile.html', ctx)
+

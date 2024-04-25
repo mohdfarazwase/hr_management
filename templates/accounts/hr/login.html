@@ -6,10 +6,22 @@
 
 {% block css %}
 <style>
-    body{
-        background-color: #44a0fc;
+   body{
+        background-image: url("{% static 'img/hero-bg.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     
     }
+    .login-container{
+        background-color: rgba(255, 255, 255,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 </style>
 {% endblock css %}
 
@@ -24,7 +36,7 @@
                     <form method="post">
                         {% include 'components/message.html' %}
                         {% csrf_token %}
-                        <input type="hidden" name="group" value="user">
+                        <input type="hidden" name="group" value="hr">
                         <div class="mb-3">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" required>

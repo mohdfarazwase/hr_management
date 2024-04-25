@@ -7,9 +7,21 @@
 {% block css %}
 <style>
     body{
-        background-color: #44a0fc;
+        background-image: url("{% static 'img/hero-bg.jpg' %}");
+        background-size: cover;
+        background-position: center;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
     
     }
+    .login-container{
+        background-color: rgba(255, 255, 255,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
 </style>
 {% endblock css %}
 
@@ -18,7 +30,7 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded fadeIn">
+            <div class="card login-container">
                 <div class="card-body">
                     <h2 class="text-center mb-4">User Login</h2>
                     <form method="post">

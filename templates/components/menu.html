@@ -1,36 +1,36 @@
+{% if user.is_authenticated %}
 <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid d-flex align-items-center justify-content-between">
+    <div class="container d-flex align-items-center justify-content-between">
 
         <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="/static/img/logo.png" alt=""> -->
-            <i class="bi bi-camera"></i>
-            <h1>AIsolutions</h1>
+            <i class="bi bi-camera"></i>&nbsp;<h3> AIsolutions</h3>
         </a>
 
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="{% url 'home' %}" class="active">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li class="dropdown"><a href="#"><span>Models</span> <i
-                            class="bi bi-chevron-down dropdown-indicator"></i></a>
+                <li><a href="{% url 'home' %}" class="active">HOME</a></li>
+                <li><a href="{% url 'about' %}">ABOUT</a></li>
+                <!-- <li class="dropdown"><a href="#"><span>Models</span> <i
+                            class="bi bi-chevron-down dropdown-indicator"></i></a> -->
                     <ul>
-                        <li><a href="gallery.html">Job</a></li>
-                        <li><a href="gallery.html">Resume</a></li>
-                        <li><a href="gallery.html">Contact</a></li>
-                        <li><a href="gallery.html">Feedback</a></li>
-                        <li class="dropdown"><a href="#"><span>Sub Menu</span> <i
+                <li><a href="gallery.html">JOB</a></li>
+                <li><a href="{% url 'uploadcv' %}">RESUME</a></li>
+                <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                <li><a href="gallery.html">FEEDBACK</a></li>
+                        <!-- <li class="dropdown"><a href="#"><span>Sub Menu</span> <i
                                     class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>
                                 <li><a href="#">Sub Menu 1</a></li>
                                 <li><a href="#">Sub Menu 2</a></li>
                                 <li><a href="#">Sub Menu 3</a></li>
-                            </ul>
+                            </ul> -->
                         </li>
                     </ul>
                 </li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="services.html">SERVICES</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
 
                 {% if not user.is_authenticated %}
                 <li><a href="{% url 'hlogin' %}">hr</a></li>
@@ -54,15 +54,15 @@
                         <i class="bi bi-chevron-down dropdown-indicator"></i>
                     </a>
                     <ul>
-                        <li> <a href="#">Dashboard</a></li>
-                        {% if session.group == 'user' %}
+                        {% if user.groups.all.0.name == 'user' %}
+                        <li> <a href="{% url 'user_dashboard' %}">Dashboard</a></li>
                         <li> <a href="{% url 'user_profile' %}">Profile</a></li>
-                        {% elif session.group == 'hr' %}
-                        <li> <a href="{% url 'hr_profile' %}">Profile</a></li>
+                        {% elif user.groups.all.0.name == 'hr' %}
+                        <li> <a href="{% url 'hr_dashboard' %}">Dashboard</a></li>
+                        <li> <a href="{% url 'hr_profile_view' %}">Profile</a></li>
                         {% endif %}
-
-                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                    </ul>
+                        <li> <a href="{% url 'logout' %}">Logout</a></li>
+                      </ul>
                 </li>
                 {% endif %}
 
@@ -81,3 +81,4 @@
 
     </div> -->
 </header><!-- End Header -->
+{% endif %}

@@ -6,36 +6,50 @@
 
 {% block css %}
 <style>
-    body {
-        background-color: #44a0fc;
-    }
+   .container {
+    margin-top: 50px;
+}
 
-    .dashboard-container {
-        margin-top: 50px;
-    }
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
 
-    .user-info {
-        margin-bottom: 20px;
-    }
+p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+body{
+    background-color: aqua;
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;}
+
+.container{
+    background-color: rgba(255, 255, 255,0.5);
+    
+    justify-content: center;
+    align-items: center;
+}
 </style>
 {% endblock css %}
 
 
 {% block content %}
-<div class="container dashboard-container">
-    <h1>Welcome, <span id="username"></span>!</h1>
-    <div class="user-info">
-        <h2>Your Information:</h2>
-        <p>Email: <span id="email"></span></p>
-        <!-- Add more fields as needed -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Welcome, {{ user.username }}!</h1>
+            <p>Here is your dashboard:</p>
+            <!-- Add your dashboard content here -->
+        </div>
+        <div class="col-md-6">
+            <!-- Add any additional dashboard elements here -->
+        </div>
     </div>
-    <a href="/logout" class="btn btn-primary">Logout</a>
 </div>
-<script>
-    // Replace these with actual values from your server
-    document.getElementById('username').textContent = 'User Name';
-    document.getElementById('email').textContent = 'user@example.com';
-</script>
 {% endblock content %}
 
 

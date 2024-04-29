@@ -84,3 +84,36 @@ def contact_view(request):
         'profile': profile,
     }
     return render(request, 'hrapp/contact.html', context)
+
+@login_required
+def contact_create(request):
+    user = User.objects.get(username=request.user)
+    profile = HrProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact_form.html', context)
+
+@login_required
+def contact_edit(request, id):
+    user = User.objects.get(username=request.user)
+    profile = HrProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact_form.html', context)
+
+@login_required
+def contact_delete(request, id):
+    user = User.objects.get(username=request.user)
+    profile = HrProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact.html', context)
+
+# Path: hrapp/urls.py
+# Compare this snippet from hrapp/urls.py:
+# from django.urls import path, re_path
+# from .views import *
+

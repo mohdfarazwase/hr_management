@@ -15,3 +15,40 @@ def dashboard(request):
         'profile': profile,
     }
     return render(request, 'userapp/dashboard.html', context)
+
+
+@login_required
+def contact_view(request):
+    user = User.objects.get(username=request.user)
+    profile = UserProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact.html', context)
+
+@login_required
+def contact_create(request):
+    user = User.objects.get(username=request.user)
+    profile = UserProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact_form.html', context)
+
+@login_required
+def contact_edit(request, id):
+    user = User.objects.get(username=request.user)
+    profile = UserProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact_form.html', context)
+
+@login_required
+def contact_delete(request, id):
+    user = User.objects.get(username=request.user)
+    profile = UserProfile.objects.get(user=user)
+    context = {
+        'profile': profile,
+    }
+    return render(request, 'hrapp/contact.html', context)

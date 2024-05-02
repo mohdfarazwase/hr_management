@@ -1,2 +1,7 @@
 django
 mysqlclient
+python-dotenv
+pdfminer.six
+scikit-learn
+docx2txt
+nltk

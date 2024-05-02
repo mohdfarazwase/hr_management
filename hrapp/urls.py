@@ -1,6 +1,5 @@
 from django.urls import path, re_path
 from .views import *
-from .views import dashboard, hr_profile_view, hr_profile_edit, hr_profile_create, resume_list, contact_view, contact_create, contact_edit, contact_delete
 
 
 urlpatterns = [
@@ -9,14 +8,16 @@ urlpatterns = [
     path('profile/view', hr_profile_view, name='hr_profile_view'),
     path('profile/edit', hr_profile_edit, name='hr_profile_edit'),
     path('profile/create', hr_profile_create, name='hr_profile_create'),
-    # resume
+    # resume list, view, delete, notify
     path('resume/list', resume_list, name='resume_list'),
-
-    # contact
-    path('contact', contact_view, name='contact'),
-    path('contact/create', contact_create, name='contact_create'),
-    path('contact/edit/<int:id>', contact_edit, name='contact_edit'),
-    path('contact/delete/<int:id>', contact_delete, name='contact_delete'),
-
-    
+    path('resume/view/<int:id>', resume_view, name='resume_view'),
+    path('resume/delete/<int:id>', resume_delete, name='resume_delete'),
+    path('resume/notify/<int:id>', resume_notify, name='resume_notify'),
+    # job list, add, view, edit, delete
+    path('job/list', job_list, name='job_list'),
+    path('job/add', job_add, name='job_add'),
+    path('job/view/<int:id>', job_view, name='job_view'),
+    path('job/edit/<int:id>', job_edit, name='job_edit'),
+    path('job/delete/<int:id>', job_delete, name='job_delete'),
+    path('job/match/<int:id>', job_match, name='job_match'),
 ]

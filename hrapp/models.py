@@ -13,7 +13,7 @@ class Job(models.Model):
     company = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
+    def __str__(self):
         return self.title
 
 class JobMatches(models.Model):
@@ -28,17 +28,17 @@ class JobMatches(models.Model):
     status = models.CharField(max_length=100, choices=status_choices, default='pending')
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def _str_(self):
+    def __str__(self):
         return self.job.title
 # resume
     
 class Resume(models.Model):
-    file = models.FileField(upload_to='resumes/')  
+    file = models.FileField(upload_to='resumes/', help_text='Upload your resume', verbose_name='Resume')  
     user = models.ForeignKey( User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def str(self):
-        return self.full_name 
+    def __str__(self):
+        return self.file.path 
    
 # contact
     
@@ -48,7 +48,7 @@ class Contact(models.Model):
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def str(self):
+    def __str__(self):
         return self.full_name
     
 # feedback
@@ -60,5 +60,6 @@ class Feedback(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def str(self):
+    def __str__(self):
         return self.user_name
+    

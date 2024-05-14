@@ -104,23 +104,6 @@ def logout_view(request):
     logout(request)
     return redirect('home')
 
-@login_required
-def user_profile(request):
-    form = UserProfileForm()
-    profile = UserProfile.objects.filter(user=request.user).first()
-    if profile:
-        form = UserProfileForm(instance=profile)
-    if request.method == 'POST':
-        user_form = UserProfileForm(request.POST, request.FILES)
-        if user_form.is_valid():
-            form = user_form.save(commit=False)
-            form.user = request.user
-            form.save()
-            messages.success(request, 'Profile updated successfully')
-            return redirect('user_profile')
-    ctx = {
-        'form': form
-    }
-    return render(request, 'accounts/user/profile.html', ctx)
+
 
 

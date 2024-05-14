@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact Us</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
-  <style>
-    body {
+{% extends 'base/master.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block css %}
+<style>
+   body {
       
       background-size: cover;
       background-position: center;
@@ -24,11 +23,12 @@
     .contact-form {
       margin-top: 20px;
     }
-  </style>
-</head>
 
-<body>
-  <!-- Contact 1 - Bootstrap Brain Component -->
+</style>
+{% endblock css %}
+
+
+{% block content %}
 <section class="bg-light py-3 py-md-5">
   <div class="container">
     <div class="row justify-content-md-center">
@@ -90,6 +90,9 @@
     </div>
   </div>
 </section>
-</body>
+{% endblock content %}
 
-</html>
+
+{% block js %}
+<script></script>
+{% endblock js %}

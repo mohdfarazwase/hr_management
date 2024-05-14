@@ -20,4 +20,7 @@ urlpatterns = [
     path('job/edit/<int:id>', job_edit, name='job_edit'),
     path('job/delete/<int:id>', job_delete, name='job_delete'),
     path('job/match/<int:id>', job_match, name='job_match'),
+    # job matches delete
+    path('job/matches/delete/<int:id>', job_matches_delete, name='job_matches_delete'),
+
 ]

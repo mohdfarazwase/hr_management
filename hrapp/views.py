@@ -104,13 +104,14 @@ def resume_notify(request, id):
     applicant = resume.user
     try:
         applicant_profile = UserProfile.objects.get(user=applicant)
-        recipient_list = [applicant_profile.email]
+        recipient_list = [resume.user.email]
         send_mail(subject, message, email_from, recipient_list)
         messages.success(request, 'Notification sent successfully')
-        return redirect('resume_list')
-    except:
-        messages.warning(request, 'Applicant email not found')
-        return redirect('resume_list')
+        return redirect('job_list')
+    except Exception as e:
+        print(e)
+        messages.error(request, 'Error sending notification')
+        return redirect('job_list')
   
 # job views
 @login_required
@@ -166,9 +167,13 @@ def job_delete(request, id):
 def job_match(request, id):
     job = Job.objects.get(id=id)
     resumes = Resume.objects.all()
-    for resume in resumes:
-        match_resume_with_job(job_id=job.id, resumes=[resume])
     job_matches = JobMatches.objects.filter(job=job).order_by('-score')
+    for resume in resumes:
+        # if resume in job matches, skip
+        if JobMatches.objects.filter(job=job, resume=resume).exists():
+            continue
+        print(resume)
+        match_resume_with_job(job_id=job.id, resumes=[resume])
     context = {
         'job': job,
         'resumes': resumes,
@@ -176,5 +181,14 @@ def job_match(request, id):
     }
     return render(request, 'hrapp/job_match.html', context)
 
+@login_required
+def job_matches_delete(request, id):
+    try:
+        job_match = JobMatches.objects.get(id=id)
+        job_match.delete()
+        messages.success(request, 'Job match deleted successfully')
+    except:
+        messages.error(request, 'Error deleting job match')
+    return redirect('job_match', job_match.job.id)
 
 

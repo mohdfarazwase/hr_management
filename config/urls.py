@@ -27,7 +27,6 @@ urlpatterns = [
     path('user/', include('userapp.urls')), # link to userapp urls
     path('', TemplateView.as_view(template_name='index.html'), name='home'),
     path('about', TemplateView.as_view(template_name='about.html'), name='about'),
-    path('upload/cv', TemplateView.as_view(template_name='uploadcv.html'), name='uploadcv'),
     path('dashboard', TemplateView.as_view(template_name='dashboard.html'), name='dashboard'),
     
 ]

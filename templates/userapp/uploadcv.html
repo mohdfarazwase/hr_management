@@ -1,0 +1,36 @@
+{% extends 'base/master.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block title %}Upload CV{% endblock title %}
+
+{% block css %}
+<style>
+    .resume-upload-form label {
+        color: #333;
+    }
+
+    .resume-upload-form .btn-primary {
+        background-color: #2980b9;
+        border-color: #2980b9;
+    }
+
+    .resume-upload-form .btn-primary:hover {
+        background-color: #3498db;
+        border-color: #3498db;
+    }
+</style>
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form|crispy}}
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

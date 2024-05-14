@@ -2,7 +2,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center  me-auto me-lg-0">
+        <a href="{% url 'home' %}" class="logo d-flex align-items-center  me-auto me-lg-0">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="/static/img/logo.png" alt=""> -->
             <i class="bi bi-camera"></i>&nbsp;<h3> AIsolutions</h3>
@@ -15,10 +15,11 @@
                 <!-- <li class="dropdown"><a href="#"><span>Models</span> <i
                             class="bi bi-chevron-down dropdown-indicator"></i></a> -->
                     <ul>
-                <li><a href="gallery.html">JOB</a></li>
+                <li><a href="{% url 'job_list' %}">JOB</a></li>
                 <li><a href="{% url 'uploadcv' %}">RESUME</a></li>
                 <li><a href="{% url 'contact' %}">CONTACT</a></li>
-                <li><a href="gallery.html">FEEDBACK</a></li>
+                <li><a href="{% url 'feedback' %}">FEEDBACK</a></li>
+                <li><a href="{% url 'job_add' %}">ADD JOB</a></li>
                         <!-- <li class="dropdown"><a href="#"><span>Sub Menu</span> <i
                                     class="bi bi-chevron-down dropdown-indicator"></i></a>
                             <ul>

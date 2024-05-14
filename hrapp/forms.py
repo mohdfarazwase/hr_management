@@ -4,13 +4,16 @@ from .models import Job, Resume, Contact, Feedback
 class ResumeForm(forms.ModelForm):
     class Meta:
         model = Resume
-        fields = ['title', 'resume_file', 'cv_picture']
+        fields = ['file']
+        widgets = {
+            'file': forms.FileInput(attrs={'accept': '.pdf, .docx'}),
+        }
         
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = ['name', 'email', 'subject', 'message']
+        fields = ['full_name', 'email', 'message']
 
 
 class JobForm(forms.ModelForm):

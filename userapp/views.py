@@ -124,6 +124,7 @@ def myresume_list(request):
         messages.error(request, "Please complete your profile")
         return redirect('user_profile')
     resumes = Resume.objects.filter(user=user)
+    print(resumes)
     context = {
         'resumes': resumes,
     }
@@ -140,7 +141,10 @@ def myresume_view(request, id):
     context = {
         'resume': resume,
     }
-    return render(request, 'userapp/resume_view.html', context)
+
+    response = render(request, 'userapp/resume_view.html', context)
+    response['X-Frame-Options'] = 'allow-from *'
+    return response
 
 @login_required
 def myresume_delete(request, id):

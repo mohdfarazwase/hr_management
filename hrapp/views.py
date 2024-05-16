@@ -173,6 +173,7 @@ def job_match(request, id):
         if JobMatches.objects.filter(job=job, resume=resume).exists():
             continue
         print(resume)
+        file = resume.file
         match_resume_with_job(job_id=job.id, resumes=[resume])
     context = {
         'job': job,

@@ -83,11 +83,9 @@
                             No Match
                         </div>
                         {% endif %}
-
                     </div>
-
                     </p>
-                    <a href="{% url 'resume_view' match.resume.id %}" target="_blank" class="btn btn-success btn-sm">
+                    <a href="{{ match.resume.file.url }}" target="_blank" class="btn btn-success btn-sm">
                         View Resume
                     </a>
                     <a href="{% url 'resume_notify' match.resume.id %}" class="btn btn-info btn-sm">
